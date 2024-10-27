@@ -78,18 +78,51 @@ the OS is now functional and I can sign into the root user account using the pas
 3. I used "passwd --expire justin" to require a password change for just apon next login, same for codi
 4. "EDITOR=vim visudo" will allow me to edit the sudoers file to give members of wheel sudo perms (aka justin and codi)
 5. This was a little challenging because i'm not used to editing with VIM so I had to look up how to even edit the text and then how to save and quit
+6. 
 ### Adding a DE (desktop enviroment)
 I chose to use LXQt because it was the smallest
 1. 3 commands for that
      1. "pacman -S xorg-server xorg-xinit lxqt"
      2. "pacman -S sddm"
-     3. "systemctl enable sddm"
+     3. "systemctl enable sddm" (this will allow the DE to run from boot)
 
 I ran into a problem using the first command, it turns out the lxqt mirrors are just completly broken
 so I instead opted to use a different DE XFCE
 
 the steps I used were as follows
-  1.pacman -S xfce4 - installs xfce
-  2.pacman -S lightdm lightdm-gtk-greeter - creates a login screen
-  3.systemctl enable lightdm - makes the login screen apear at boot
+    1.pacman -S xfce4 = installs xfce. 
+    2.pacman -S lightdm lightdm-gtk-greeter = creates a login screen. 
+    3.systemctl enable lightdm = makes the login screen apear at boot. 
    
+### Installing a shell other than bash
+this has to be done for each individual user so
+1.pacman -S zsh
+2.chsh -s /usr/bin/zsh justin
+3.chsh -s /usr/bin/zsh codi
+4.chsh -s /usr/bin/zsh oliver
+
+### Installing SSH
+installed SSH using the following commands
+1.pacman -S openssh
+2.systemctl enable sshd
+3.systemctl start sshd
+
+### Enable terminal colors !!! :DDDD
+We need to edit the /etc/pacman.conf file path and uncomment
+1. this will only give us colors for pacman commands
+2. to get colors for grep and ls (commands that are used freuqently enough so I decided to choose them) we need to paste the following into the shell rc path (~/.bashrc or zsh equivelent)
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+### Adding some more aliases!!
+these aliases will be for zsh just cuz
+in order to add aliases we need to append them to the shell directory ~/.zshrc
+these commands will probably work
+
+1.echo "alias ll='ls -la'" >> ~/.zshrc
+2.echo "alias update='sudo pacman -Syu'" >> ~/.zshrc
+3.echo "alias cls='clear'" >> ~/.zshrc
+
+### extra!! installing a web browser
+sudo pacman -S firefox
