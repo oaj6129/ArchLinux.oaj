@@ -57,3 +57,4 @@ volumes:
 
 ### Access Word Press
 Open your browser and navigate to http://localhost:8080. Follow the on-screen instructions to set up WordPress.
+***Note from author, dont forget to upload your .yml file to github***
