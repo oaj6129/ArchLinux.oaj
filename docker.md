@@ -51,10 +51,14 @@ volumes:
   wordpress_data:  
   db_data:  
 
+volumes:  
+  wordpress_data:    
+  db_data:  
+
 ### Start the application
 1. docker-compose up -d  
 2. docker ps
 
 ### Access Word Press
 Open your browser and navigate to http://localhost:8080. Follow the on-screen instructions to set up WordPress.
-***Note from author, dont forget to upload your .yml file to github***
+***Note from author, dont forget to upload your .yml file to github and add pictures of WP***
